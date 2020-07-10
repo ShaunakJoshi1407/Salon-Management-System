@@ -1,1 +1,308 @@
 
+The definition of our problem lies in manual system and a fully automated system.
+
+Manual system: It is very inconvenient to always go to the salon and wait in the queue during the busy hours.Moreover, one doesn’t even know if the specific salon provides the services ,the customer requires.
+
+Technical system: With the advent of latest technology if we do not update our system thenOur business results in losses gradually with time. We have developed a web application to book appointment online. This will not only saver the efforts of the customer  but also show him the services beforehand. He will also get to know more information about the salons nearby him. This way our web application will help the customer make an informed decision.
+
+
+
+RELATIONAL DATA BASE DESIGN:
+
+1] Customer:-
+
+
+
+cust_email
+
+   (PK)	
+city	
+fname
+	
+lname
+	
+address
+	
+cust_password	
+gender
+
+
+
+
+
+2] appointment:-
+
+
+
+appointment_id
+       (PK)	
+	
+status	
+completed
+	
+total_cost
+	
+cust_email
+    (FK)	
+sal_email
+    (FK)	
+appt_date	
+appt_time
+
+
+
+
+3]Salon:-
+
+
+
+sal_email
+   (PK)	
+sal_name	
+sal_city	
+sal_password	
+sal_contact	
+sal_address	
+noOfSeats	
+approved	
+rating
+	
+noOfRatings
+
+
+
+
+
+
+
+
+4] Services:-
+
+
+
+service_name
+       (PK)	
+service_cost	
+service_duration
+	
+sal_email
+    (FK)
+
+5] Catalog:-
+
+     (appt_date, appt_time, sal_email) – Composite Key
+  
+
+appt_date
+    (PK)	
+appt_time
+    (PK)	
+sal_email
+     (FK)
+	
+noOfSeats
+
+
+
+6] Contains:-
+
+    (Service, appt_id) – Composite Key
+
+
+   Service
+    (FK)	
+   appt_id
+     (FK)	
+duration
+	
+cost
+
+
+DATABASE NORMALIZATION
+
+First Normal Form:-
+
+The relation is in 1NF if it has no repeating groups. All  tables has no repeating groups so they are in 1NF.
+
+
+Tables:-
+
+
+1] Customer:-
+
+
+
+cust_email
+
+   (PK)	
+city	
+fname
+	
+lname
+	
+address
+	
+cust_password	
+gender
+
+
+
+
+2] appointment:-
+
+
+
+appointment_id
+       (PK)	
+	
+status	
+completed
+	
+total_cost
+	
+cust_email
+    (FK)	
+sal_email
+    (FK)	
+appt_date	
+appt_time
+
+
+Second Normal Form
+
+A relation is said to be in second normal form if it is already in first normal form and it has no partial dependency
+Foreign Key references the primary key of another Table.This helps in referential integrity i.e. only those values can be present in the referenced table which are already present in the parent table.
+
+In appointment table, attributes sal_email and cust_email are foreign keys and they reference sal_email of salon table and cust_email of customer table ,respectively.
+
+
+1] Customer:-
+
+
+
+cust_email
+
+   (PK)	
+city	
+fname
+	
+lname
+	
+address
+	
+cust_password	
+gender
+
+
+
+
+
+
+
+
+
+2] appointment:-
+
+
+appointment_id
+       (PK)	
+	
+status	
+completed
+	
+total_cost
+	
+cust_email
+    (FK)	
+sal_email
+    (FK)	
+appt_date	
+appt_time
+
+
+
+
+
+3]Salon:-
+
+
+
+sal_email
+   (PK)	
+sal_name	
+sal_city	
+sal_password	
+sal_contact	
+sal_address	
+noOfSeats	
+approved	
+rating
+	
+noOfRatings
+
+
+
+
+
+Third Normal Form
+
+A relation is said to be in third normal form if it is already in 1st and 2nd NF and has no transitive dependency.
+
+A transitive functional dependency is when changing a non-key column, might cause any of the other non-key columns to change
+
+3NF is used to reduce the data duplication. It is also used to achieve the data integrity.
+
+If there is no transitive dependency for non-prime attributes, then the relation must be in third normal form.
+
+
+
+
+ appointment:-
+
+
+
+appointment_id
+       (PK)	
+	
+status	
+completed
+	
+total_cost
+	
+cust_email
+    (FK)	
+sal_email
+    (FK)	
+appt_date	
+appt_time
+
+
+
+
+Services:-
+
+
+
+service_name
+       (PK)	
+service_cost	
+service_duration
+	
+sal_email
+    (FK)
+
+
+ Contains:-
+
+    (Service, appt_id) – Composite Key
+
+
+   Service
+    (FK)	
+   appt_id
+     (FK)	
+duration
+	
+cost
+
+
